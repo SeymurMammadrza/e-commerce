@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}"  >
+
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="navbar">
+        <div class="navbar-btn">Customers</div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Phone Number</td>
+            <td colspan="2">Action</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer:${customers}">
+            <td th:text="${customer.customerId}"/>
+            <td th:text="${customer.name}"/>
+            <td th:text="${customer.phoneNumber}"/>
+            <td><a th:href="@{/customer/update(id=${customer.customerId}) }">Update </a></td>
+            <td><a th:href="@{/customer/delete(id=${customer.customerId}) }">Delete </a></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/customer/new}">Add new customer </a>
+</div>
+</body>
+</html>
+
