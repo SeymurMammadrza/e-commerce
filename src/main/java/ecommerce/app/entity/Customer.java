@@ -1,6 +1,6 @@
 package ecommerce.app.entity;
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -8,7 +8,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="customer_id")
     private long customerId;
 
     @Column(name="name")
@@ -17,8 +17,8 @@ public class Customer {
     @Column(name="phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "customer")
-    private List <Order> orders;
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List <Order> orders=new ArrayList<>();
 
     public long getCustomerId() {
         return customerId;
@@ -50,15 +50,5 @@ public class Customer {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", orders=" + orders +
-                '}';
     }
 }
