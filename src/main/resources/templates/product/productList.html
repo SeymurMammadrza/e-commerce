@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="navbar">
+        <div class="navbar-btn">Products</div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Product ID</td>
+            <td>Product name</td>
+            <td>Description</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product:${products}">
+            <td th:text="${product.productId}"/>
+            <td th:text="${product.name}"/>
+            <td th:text="${product.description}"/>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/customer/list}">Back to Customers</a>
+    <br>
+    <a th:href="@{/product/new}">Add product</a>
+
+</div>
 </body>
 </html>
+

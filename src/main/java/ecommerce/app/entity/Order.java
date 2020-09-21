@@ -1,9 +1,15 @@
 package ecommerce.app.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.ToString;
+
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
+@JsonIgnoreProperties("customer")
+@Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,43 +17,13 @@ public class Order {
     private long orderId;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "customer_id",referencedColumnName = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order",cascade = CascadeType.REMOVE,orphanRemoval = true, fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", customer=" + customer +
-                ", orderItems=" + orderItems +
-                '}';
-    }
 }

@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}"  >
 <body>
-
+<nav class="navbar">
+    <div class="navbar">
+        <div class="navbar-btn">Product by id </div>
+    </div>
+</nav>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Order Item ID</td>
+            <td>Product ID</td>
+            <td>Product name</td>
+            <td>Quantity</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${orderItem.orderItemId}"/>
+            <td th:text="${product.productId}"/>
+            <td th:text="${product.name}"/>
+            <td th:text="${product.description}"/>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/customers/list}">Back to Customers </a>
+</div>
 </body>
 </html>

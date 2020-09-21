@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
 </head>
 <body>
+<form action="#" th:action="@{/orderitem/save}" th:object="${orderItem}" method="POST">
+    <table border="1">
+        <tr>
+            <td><label th:text="'Order id'"/></td>
+            <td><select  th:field="*{order}">
+                <option input type="text" readonly th:each="order :${orders}"
+                        th:text="${order.orderId}" th:value="${order.orderId}"></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><label th:text="'Order item ID'"/></td>
+            <td><input type="number" readonly th:field="*{orderItemId}"/></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td><label th:text="'Select Product'"/></td>-->
+<!--            <td><select th:object="${products}">-->
+<!--            <option th:each="product:${products}" th:text="${product.name}">-->
+<!--            </option>-->
+<!--            </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label th:text="'Quantity'"/></td>-->
+<!--            <td><input type="text" th:field="*{quantity}"/></td>-->
+<!--        </tr>-->
+        <tr>
+            <td><input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
 
+</form>
 </body>
 </html>

@@ -22,7 +22,7 @@
             <td>ID</td>
             <td>Name</td>
             <td>Phone Number</td>
-            <td colspan="2">Action</td>
+            <td colspan="3">Action</td>
 
         </tr>
         </thead>
@@ -33,11 +33,12 @@
             <td th:text="${customer.phoneNumber}"/>
             <td><a th:href="@{/customer/update(id=${customer.customerId}) }">Update </a></td>
             <td><a th:href="@{/customer/delete(id=${customer.customerId}) }">Delete </a></td>
+            <td><a th:href="@{/customer/orders(id=${customer.customerId}) }">Orders </a></td>
         </tr>
         </tbody>
     </table>
     <br>
-    <a th:href="@{/customer/new}">Add new customer </a>
+    <a th:href="@{/customer/new}">Add a new customer </a>
 </div>
 </body>
 </html>

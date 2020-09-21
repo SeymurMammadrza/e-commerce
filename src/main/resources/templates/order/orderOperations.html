@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
 </head>
 <body>
+<form action="#" th:action="@{/order/save}" th:object="${order}" method="POST">
+    <table border="1">
+        <tr>
+            <td><label th:text="'Order ID'"/></td>
+            <td><input type="number" readonly th:field="*{orderId}"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="'Customer of order'"/></td>
+            <td><select  th:field="*{customer}">
+                <option input type="text" readonly th:each="customer :${customers}"
+                        th:text="${customer.name}" th:value="${customer.customerId}"></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
 
+</form>
 </body>
 </html>
